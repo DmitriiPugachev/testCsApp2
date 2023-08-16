@@ -1,20 +1,23 @@
+using testCsApp2.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
 namespace testCsApp2.Api.Controllers
 {   
     [ApiController]
     [Route("api/v1/health")]
-    public class HealthController : BaseController
+    public class HealthController : ControllerBase
     {
-        private readonly HealthService _healthService;
+        private readonly IHealthService _healthService;
 
-        public HealthController(IHealthService _healthService)
+        public HealthController(IHealthService healthService)
         {
-            _healthService = _healthService;
+            _healthService = healthService;
         }
 
         [HttpGet]
-        public static bool GetHealthStatus(HealthService _healthService)
+        public bool GetHealthStatus()
         {
-            return _healthService.GetHealth()
+            return _healthService.GetHealth();
         }
     }
 }
