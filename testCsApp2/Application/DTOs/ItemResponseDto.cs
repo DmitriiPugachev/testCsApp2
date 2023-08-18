@@ -1,8 +1,8 @@
 using TestCsApp.Domain.Enums;
 
-namespace TestCsApp.Domain.Contracts
+namespace testCsApp2.Application.DTOs
 {
-    public record ItemResponse
+    public record ItemResponseDto
     {
         public Guid id;
         public string city;

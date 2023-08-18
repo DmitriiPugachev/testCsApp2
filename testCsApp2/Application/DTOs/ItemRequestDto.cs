@@ -1,8 +1,8 @@
 using TestCsApp.Domain.Enums;
 
-namespace TestCsApp.Domain.Contracts
+namespace testCsApp2.Application.DTOs
 {
-    public record ItemRequest
+    public record ItemRequestDto
     {
         public string city;
         public DateTime startDate;
