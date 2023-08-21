@@ -22,9 +22,19 @@ namespace testCsApp2.Api.Controllers
             return _itemService.GetItem(id);
         }
         [HttpPost]
-        public async Task<Item> CreateItem(ItemRequestDto itemRequest)
+        public Item CreateItem(ItemRequestDto itemRequest)
         {
-            return await _itemService.CreateItem(itemRequest);
+            return _itemService.CreateItem(itemRequest);
+        }
+        [HttpPut]
+        public Item UpdateItem(Guid id, ItemRequestDto itemRequest)
+        {
+            return _itemService.UpdateItem(id, itemRequest);
+        }
+        [HttpDelete("{id:guid}")]
+        public void DeleteItem(Guid id)
+        {
+            _itemService.DeleteItem(id);
         }
     }
 }

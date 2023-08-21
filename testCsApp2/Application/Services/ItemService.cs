@@ -15,10 +15,9 @@ namespace testCsApp2.Application.Services
         }
         public Item GetItem(Guid id)
         {
-            Item dbItem = _dataContext.Items.Where(item => item.Id == id).First();
-            return dbItem;
+            return _dataContext.Items.Where(item => item.Id == id).First();
         }
-        public async Task<Item> CreateItem(ItemRequestDto itemRequest)
+        public Item CreateItem(ItemRequestDto itemRequest)
         {
             Item newItem = new Item(
                 itemRequest.city,
@@ -29,8 +28,30 @@ namespace testCsApp2.Application.Services
                 itemRequest.color
             );
             _dataContext.Items.Add(newItem);
-            await _dataContext.SaveChangesAsync();
+            _dataContext.SaveChanges();
             return newItem;
+        }
+        public Item UpdateItem(Guid id, ItemRequestDto itemRequest)
+        {
+            Item updatedItem = new Item(
+                itemRequest.city,
+                itemRequest.startDate,
+                itemRequest.endDate,
+                itemRequest.price,
+                itemRequest.status,
+                itemRequest.color
+            );
+            Item itemToUpdate = _dataContext.Items.Where(item => item.Id == id).First();
+            _dataContext.Items.Remove(itemToUpdate);
+            _dataContext.Items.Add(updatedItem);
+            _dataContext.SaveChanges();
+            return updatedItem;
+        }
+        public void DeleteItem(Guid id)
+        {
+            Item itemToRemove = _dataContext.Items.Where(item => item.Id == id).First();
+            _dataContext.Items.Remove(itemToRemove);
+            _dataContext.SaveChanges();
         }
     }
 }
