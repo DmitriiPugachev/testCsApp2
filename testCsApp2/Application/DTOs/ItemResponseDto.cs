@@ -1,4 +1,4 @@
-using TestCsApp.Domain.Enums;
+using testCsApp2.Domain.Enums;
 
 namespace testCsApp2.Application.DTOs
 {

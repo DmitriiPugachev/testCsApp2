@@ -1,24 +1,21 @@
 using testCsApp2.Application.Services.Interfaces;
-using testCsApp2.Application.DTOs;
-using TestCsApp.Domain.Enums;
+using testCsApp2.Domain.Entities;
+using testCsApp2.Infrastructure.Persistence;
 
 namespace testCsApp2.Application.Services
 {
     public class ItemService : IItemService
     {
-        public ItemResponseDto GetItem(Guid id)
+        private readonly DataContext _dataContext;
+
+        public ItemService (DataContext dataContext)
         {
-            ItemResponseDto freshItem = new ItemResponseDto()
-            {
-                id = Guid.NewGuid(),
-                city = "city",
-                startDate = DateTime.Now,
-                endDate = DateTime.Now,
-                price = 0.9,
-                status = ItemStatuses.YEARLY,
-                color = "#f05969"
-            };
-            return freshItem;
+            _dataContext = dataContext;
+        }
+        public Item GetItem(Guid id)
+        {
+            Item dbItem = _dataContext.Items.Where(item => item.Id == id).First();
+            return dbItem;
         }
     }
 }

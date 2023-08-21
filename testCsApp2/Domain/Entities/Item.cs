@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-using TestCsApp.Domain.Common;
-using TestCsApp.Domain.Enums;
+using testCsApp2.Domain.Common;
+using testCsApp2.Domain.Enums;
 
-namespace TestCsApp.Domain.Entities
+namespace testCsApp2.Domain.Entities
 {
         [Index("City")]
         [Index("StartDate")]

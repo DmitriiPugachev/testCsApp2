@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TestCsApp.Domain.Entities;
+using testCsApp2.Domain.Entities;
 
 namespace testCsApp2.Infrastructure.Persistence
 {

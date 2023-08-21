@@ -1,4 +1,4 @@
-namespace TestCsApp.Domain.Enums
+namespace testCsApp2.Domain.Enums
 {
     public enum ItemStatuses
     {

@@ -12,14 +12,16 @@ namespace testCsApp2
             var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
         builder.Services.AddControllers();
         builder.Services.AddScoped<IHealthService, HealthService>();
         builder.Services.AddScoped<IItemService, ItemService>();
+        builder.Services.AddScoped<DataContextInitialiser>();
 
         builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql("name=ConnectionStrings:DatabaseConnection"));
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        // TODO: Check if AddControllerWithViews is needed here
+        builder.Services.AddControllersWithViews();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
@@ -37,8 +39,6 @@ namespace testCsApp2
 
         app.UseSwagger();
         app.UseSwaggerUI();
-
-        app.UseHttpsRedirection();
 
         app.UseAuthorization();
 

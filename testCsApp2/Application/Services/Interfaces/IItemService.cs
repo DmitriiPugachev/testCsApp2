@@ -1,10 +1,10 @@
-using testCsApp2.Application.DTOs;
+using testCsApp2.Domain.Entities;
 
 namespace testCsApp2.Application.Services.Interfaces
 {
     public interface IItemService
     {
-        ItemResponseDto GetItem(Guid id);
+        Item GetItem(Guid id);
         //ItemResponseDto CreateItem(ItemRequestDto itemRequest);
         //ItemResponseDto UpdateItem(Guid id, ItemRequestDto itemRequest);
         //void DeleteItem(Guid id);
