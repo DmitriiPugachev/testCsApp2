@@ -1,3 +1,4 @@
+using testCsApp2.Application.DTOs;
 using testCsApp2.Application.Services.Interfaces;
 using testCsApp2.Domain.Entities;
 using testCsApp2.Infrastructure.Persistence;
@@ -16,6 +17,20 @@ namespace testCsApp2.Application.Services
         {
             Item dbItem = _dataContext.Items.Where(item => item.Id == id).First();
             return dbItem;
+        }
+        public async Task<Item> CreateItem(ItemRequestDto itemRequest)
+        {
+            Item newItem = new Item(
+                itemRequest.city,
+                itemRequest.startDate,
+                itemRequest.endDate,
+                itemRequest.price,
+                itemRequest.status,
+                itemRequest.color
+            );
+            _dataContext.Items.Add(newItem);
+            await _dataContext.SaveChangesAsync();
+            return newItem;
         }
     }
 }

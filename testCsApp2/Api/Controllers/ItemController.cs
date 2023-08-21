@@ -1,6 +1,7 @@
 using testCsApp2.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using testCsApp2.Domain.Entities;
+using testCsApp2.Application.DTOs;
 
 namespace testCsApp2.Api.Controllers
 {   
@@ -15,10 +16,15 @@ namespace testCsApp2.Api.Controllers
             _itemService = itemService;
         }
 
-        [HttpGet]
-        public Item GetItem(Guid Id)
+        [HttpGet("{id:guid}")]
+        public Item GetItem(Guid id)
         {
-            return _itemService.GetItem(Id);
+            return _itemService.GetItem(id);
+        }
+        [HttpPost]
+        public async Task<Item> CreateItem(ItemRequestDto itemRequest)
+        {
+            return await _itemService.CreateItem(itemRequest);
         }
     }
 }
